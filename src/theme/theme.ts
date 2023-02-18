@@ -48,7 +48,7 @@ export const tokens = (mode: string) => ({
         },
         primary: {
             DEFAULT: '#FFFFFF',
-            500: '#F7F7F7'
+            600: '#F7F7F7'
         },
         secondary: {
             DEFAULT: '#7C7C7C'
@@ -79,10 +79,10 @@ export const themeSettings: any = (mode: string) => {
             mode: mode,
             ...(mode === "dark" ? {
                 primary: {
-                    main: colors.black.DEFAULT
+                    main: colors.primary.DEFAULT
                 },
                 secondary: {
-                    main: colors.gray.DEFAULT
+                    main: colors.secondary.DEFAULT
                 },
                 neutral: {
                     main: colors.black[500],
@@ -90,10 +90,10 @@ export const themeSettings: any = (mode: string) => {
                 }
             } : {
                 primary: {
-                    main: colors.white.DEFAULT
+                    main: colors.primary.DEFAULT
                 },
                 secondary: {
-                    main: colors.gray.DEFAULT
+                    main: colors.secondary.DEFAULT
                 },
                 neutral: {
                     main: colors.black[500],

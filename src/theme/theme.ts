@@ -4,6 +4,7 @@ import {light} from "@mui/material/styles/createPalette";
 
 export const tokens = (mode: string) => ({
     ...(mode === "dark" ? {
+        // TODO: Разбить на разные компоненты тему и цвета, а еще узнать, откуда лучше получать цвета с бека или хранить во фронте?
         primary: {
             DEFAULT: '#000000',
             100: '#000000',
@@ -38,6 +39,9 @@ export const tokens = (mode: string) => ({
         gray: {
             DEFAULT: '#3C3C3C'
         },
+        blue: {
+            DEFAULT: "#4169E1"
+        },
         accentMain: '#0F0E0E',
         borderColor: '#3C3C3C'
     } : {
@@ -65,6 +69,9 @@ export const tokens = (mode: string) => ({
             800: '#000000',
             900: '#000000'
         },
+        blue: {
+            DEFAULT: "#4169E1"
+        },
         gray: {
             DEFAULT: '#3C3C3C'
         },
@@ -87,6 +94,9 @@ export const themeSettings: any = (mode: string) => {
                 neutral: {
                     main: colors.black[500],
                     light: colors.white[100]
+                },
+                buttonActive: {
+                    main: colors.blue.DEFAULT
                 }
             } : {
                 primary: {
@@ -98,7 +108,11 @@ export const themeSettings: any = (mode: string) => {
                 neutral: {
                     main: colors.black[500],
                     light: colors.white[100]
-            }})
+            },
+                buttonActive: {
+                    main: colors.gray.DEFAULT
+                }
+            })
         },
         typography: {
             fontFamily:["Poppins", 'sans-serif'].join(','),

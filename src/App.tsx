@@ -16,16 +16,14 @@ function App() {
           <ThemeProvider theme={theme}>
               <CssBaseline/>
               <LayoutComponent>
-                  <div className="app">
                       <Routes>
                           <Route element={<PrivateRoute />}>
-                            <Route path='/home' element={<HomePage/>}/>
-                              <Route path='/users' element={<UsersPage/>}/>
+                            <Route path='home' element={<HomePage/>}/>
+                              <Route path='users' element={<UsersPage/>}/>
                           </Route>
                           <Route path='login' element={<AuthRootComponent/>}/>
                           <Route path='register' element={<AuthRootComponent/>}/>
                       </Routes>
-                  </div>
               </LayoutComponent>
           </ThemeProvider>
       </ColorModeContext.Provider>

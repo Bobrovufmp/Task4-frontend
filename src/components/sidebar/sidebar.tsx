@@ -19,6 +19,8 @@ import {useLocation, useNavigate} from "react-router-dom";
 import {themeSettings, tokens} from "../../theme/theme";
 import FlexBetween from "../flex-between/flexBetween";
 import {navMenu} from "../../common/moks/navigate/moksNavigate";
+
+
 const SidebarComponent = (props: any ) => {
     const [active, setActive] = useState('')
     const {isNoneMobile, drawerWidth, isOpen, setIsOpen} = props
@@ -35,7 +37,7 @@ const SidebarComponent = (props: any ) => {
     const renderNavMenu = navMenu.map((e): JSX.Element => {
             return (
                 <ListItem key={e.id}>
-                    <ListItemButton onClick={() => navigateTo(`${e.path}`)}>
+                    <ListItemButton onClick={() => navigateTo(`${e.path}`)} className={classes.navItem}>
                         <ListItemIcon>
                             {e.icon}
                         </ListItemIcon>
@@ -62,43 +64,55 @@ const SidebarComponent = (props: any ) => {
                         color: theme.palette.secondary.main,
                         backgroundColor: theme.palette.primary.main,
                         boxSizing: "border-box",
-                        width: drawerWidth
+                        width: drawerWidth,
+                        borderRightColor: `${colors.borderColor}`
             }
             }}
             >
-                    <Box width='100%'>
+                    <Box className={classes.navBlock}>
                         <Box>
                             <FlexBetween>
-                                <Box display="flex"
-                                     alignItems="center"
-                                     gap='10px'
-                                     onClick={() => navigateTo("/home")}
-                                     sx={{cursor: "pointer"}}
-                                >
+                                <Box className={classes.brand}
+                                     onClick={() => navigateTo("home")}>
                                         <Icon>
                                             <DoneOutlined/>
                                         </Icon>
                                         <Typography
                                             variant='h1'
-                                            color={theme.palette.mode === "dark" ? colors.white.DEFAULT : colors.black.DEFAULT}
+                                            className={classes.title}
                                         >
                                         Task 4
                                         </Typography>
                                 </Box>
+                                {/*TODO: Доделать логику переноса или повления sidebar*/}
                                 {!isNoneMobile && (
                                     <IconButton onClick={() => setIsOpen(!isOpen)}>
                                     <ChevronLeftOutlined/>
                                     </IconButton>)}
                             </FlexBetween>
                         </Box>
-                        <List>
+                        <List className={classes.listMenu}>
                             {renderNavMenu}
+                        </List>
+                    </Box>
+                    <Box className={classes.navBlockLogout}>
+                        <List>
+                            <ListItem>
+                                <ListItemButton onClick={() => navigateTo(`${"login"}`)} className={classes.navItemLogout}>
+                                    <ListItemIcon>
+                                        <LogoutOutlined/>
+                                    </ListItemIcon>
+                                    <ListItemText>
+                                        <Typography variant="body1">
+                                        Log Out
+                                        </Typography>
+                                    </ListItemText>
+                                </ListItemButton>
+                            </ListItem>
                         </List>
                     </Box>
                 </Drawer>
             )}
-
-
         </Box>
     );
 };

@@ -7,7 +7,7 @@ export  const useStyles = makeStyles({
     },
     mainSection: {
         display: "flex",
-        width: "90%",
+        width: "91%",
         flexDirection: "column",
         justifyContent: "center"
 

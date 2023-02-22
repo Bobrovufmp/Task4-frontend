@@ -1,18 +1,21 @@
 import {Interface} from "readline";
+import {FieldValues, UseFormRegister, UseFormSetError} from "react-hook-form";
 
-export interface IPropsLogin {
-    setPassword: (value: string) => void
-    setEmail: (value: string) => void
+export interface IPropsLogin<
+    TFieldValues extends FieldValues = FieldValues,
+    TContext = any,
+    > {
     navigate: (to: string) => void
+    register: UseFormRegister<TFieldValues>
+    errors: any;
 }
 
-export interface IPropsRegister {
-    setPassword: (value: string) => void
-    setEmail: (value: string) => void
-    setRepeatPassword: (value: string) => void
-    setUsername: (value: string) => void
-    setFirstname: (value: string) => void
+export interface IPropsRegister<
+    TFieldValues extends FieldValues = FieldValues,
+    TContext = any,
+> {
     navigate: (to: string) => void
+    register: UseFormRegister<TFieldValues>
 }
 export interface IAuthState {
     user: IPublicUser,

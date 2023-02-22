@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {useStyles} from "./styles";
 import {
     Box,
@@ -19,12 +19,12 @@ import {useLocation, useNavigate} from "react-router-dom";
 import {themeSettings, tokens} from "../../theme/theme";
 import FlexBetween from "../flex-between/flexBetween";
 import {navMenu} from "../../common/moks/navigate/moksNavigate";
-import {isString} from "util";
+import {ISidebarProps} from "../../common/types/sidebar/sidebar";
 
 
-const SidebarComponent = (props: any ) => {
+const SidebarComponent : FC <ISidebarProps> = (props: ISidebarProps ) : JSX.Element => {
     const [active, setActive] = useState('')
-    const {isNoneMobile, drawerWidth, isOpen, setIsOpen} = props
+    const {drawerWidth, isOpen, setIsOpen} = props
     const classes = useStyles()
     const {pathname} = useLocation()
     const navigateTo = useNavigate()
@@ -32,13 +32,14 @@ const SidebarComponent = (props: any ) => {
     const colors = tokens(theme.palette.mode)
 
     useEffect(() => {
-        setActive(pathname.substring(1))
+        const set = setActive(pathname)
 
-    },[])
+    },[pathname])
     const renderNavMenu = navMenu.map((e): JSX.Element => {
             return (
                 <ListItem key={e.id}>
-                    <ListItemButton onClick={() => navigateTo(`${e.path}`)} className={classes.navItem}>
+                    <ListItemButton onClick={() => navigateTo(`${e.path}`)}
+                                    className={active === e.path ? `${classes.activePage} ${classes.navItem}` : `${classes.navItem}`}>
                         <ListItemIcon>
                             {e.icon}
                         </ListItemIcon>

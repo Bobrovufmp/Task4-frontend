@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import TopBarComponent from "../topbar/topbar";
 import {Outlet, useLocation} from "react-router-dom";
 import {Box, useMediaQuery} from "@mui/material";
@@ -6,7 +6,7 @@ import SidebarComponent from "../sidebar/sidebar";
 import {useStyles} from "../layout/styles";
 
 
-const LayoutComponent = () => {
+const LayoutComponent: FC = () :JSX.Element => {
     const [isOpen, setIsOpen] = useState(false)
     const location = useLocation()
     const isNoneMobile = useMediaQuery('(min-width:600px)')
@@ -25,7 +25,6 @@ const LayoutComponent = () => {
                          justifyContent="space-between"
                     >
                         <SidebarComponent
-                        isNoneMobile={isNoneMobile}
                         drawerWidth={'250px'}
                         isOpen={isOpen}
                         setIsOpen={setIsOpen}

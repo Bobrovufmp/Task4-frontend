@@ -1,52 +1,63 @@
-import React, {Fragment, JSXElementConstructor} from 'react';
-import {TextField, Button, Typography, Box} from "@mui/material";
-import "./style.css"
+import React from 'react';
+import {Box, Button, TextField, Typography} from "@mui/material";
 import {IPropsLogin} from "../../../common/types/auth";
-import {useNavigate} from "react-router-dom";
+import {useStyles} from "./styles";
+import {AppButton} from "../../app-button/button";
 
 const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
-    const {setPassword, setEmail, navigate} = props
+    const {navigate, register, errors} = props
+    const classes = useStyles()
+
     return (
-        <Box>
+        <>
+            <Typography>
+                {/*Временно*/}
+                <span className={classes.incitingText} onClick={() => navigate('/home')}>home</span>
+                </Typography>
             <Typography variant="h2"
                         fontFamily="Poppins"
                         textAlign='center'
             >
-               Hello
+                Hello
             </Typography>
             <Typography variant="h6"
-                        margin={2}
                         fontFamily="Poppins"
-                        textAlign='left'
+                        textAlign='center'
             >
-                Sign in or <span className="incitingText" onClick={() => navigate('/register')}>create an account</span>
-
+                Sign in or <span className={classes.incitingText} onClick={() => navigate('/register')}>create an account</span>
             </Typography>
-            {/*//TODO: Страница обновляется, нарушены принципы SPA ИСПРАВИТЬ*/}
+            <TextField
+                error={!!errors.email}
+                helperText={errors.email ? `${errors.email.message}` : ''}
+                fullWidth={true}
+                margin='normal'
+                label="Email"
+                variant="outlined"
+                placeholder='Email'
+                {...register("email")}
+            />
             <TextField fullWidth={true}
-                       margin='normal'
-                       label="Email"
-                       variant="outlined"
-                       placeholder='Email'
-                       onChange={(e) => setEmail(e.target.value)}/>
-            <TextField fullWidth={true}
+                       error={!!errors.password}
+                       helperText={errors.password ? `${errors.password.message}` : ''}
                        type="password"
                        margin='normal'
                        label="Password"
                        variant="outlined"
                        placeholder='Password'
-                       onChange={(e) => setPassword(e.target.value)}/>
-            <Button sx={{
-                display: "flex",
-                fontFamily:"Poppins",
-                margin: "10px auto",
-                width:"60%",
-                }}
+                       {...register("password")}
+            />
+            <AppButton
                     variant="contained"
                     type="submit"
+                    sx={{
+                        fontFamily:"Poppins",
+                        marginTop: 2,
+                        marginBottom: 2,
+                        width: "60%",
+            }}
             >Log in
-                </Button>
-        </Box>
+            </AppButton>
+        </>
     );
 };
 

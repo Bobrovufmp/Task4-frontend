@@ -15,16 +15,16 @@ function App() {
       <ColorModeContext.Provider value={colorMode}>
           <ThemeProvider theme={theme}>
               <CssBaseline/>
-              <LayoutComponent>
                       <Routes>
-                          <Route element={<PrivateRoute />}>
-                            <Route path='home' element={<HomePage/>}/>
-                              <Route path='users' element={<UsersPage/>}/>
+                          <Route element={<LayoutComponent/>}>
+                              <Route element={<PrivateRoute />}>
+                                  <Route path='/home' element={<HomePage/>}/>
+                                  <Route path='/users' element={<UsersPage/>}/>
+                              </Route>
+                              <Route path='/login' element={<AuthRootComponent/>}/>
+                              <Route path='/register' element={<AuthRootComponent/>}/>
                           </Route>
-                          <Route path='login' element={<AuthRootComponent/>}/>
-                          <Route path='register' element={<AuthRootComponent/>}/>
                       </Routes>
-              </LayoutComponent>
           </ThemeProvider>
       </ColorModeContext.Provider>
   );

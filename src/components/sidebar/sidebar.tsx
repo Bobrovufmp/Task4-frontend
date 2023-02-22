@@ -19,6 +19,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import {themeSettings, tokens} from "../../theme/theme";
 import FlexBetween from "../flex-between/flexBetween";
 import {navMenu} from "../../common/moks/navigate/moksNavigate";
+import {isString} from "util";
 
 
 const SidebarComponent = (props: any ) => {
@@ -84,11 +85,6 @@ const SidebarComponent = (props: any ) => {
                                         Task 4
                                         </Typography>
                                 </Box>
-                                {/*TODO: Доделать логику переноса или повления sidebar*/}
-                                {!isNoneMobile && (
-                                    <IconButton onClick={() => setIsOpen(!isOpen)}>
-                                    <ChevronLeftOutlined/>
-                                    </IconButton>)}
                             </FlexBetween>
                         </Box>
                         <List className={classes.listMenu}>

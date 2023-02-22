@@ -36,7 +36,6 @@ export  const useStyles = makeStyles((theme:Theme) => {
                 // TODO: Как сделать цвета для темы и импортировать их из одно файла theme?
                 backgroundColor: "#4169E1 !important",
                 color: "#fff",
-                // border: "2px solid #8689E1",
                 '& .MuiSvgIcon-root': {
                     color: `${colors.white.DEFAULT} !important`
                 }
@@ -47,12 +46,15 @@ export  const useStyles = makeStyles((theme:Theme) => {
             "&:hover": {
                 // TODO: Как сделать цвета для темы и импортировать их из одно файла theme?
                 backgroundColor: "red !important",
-                color: "#fff",
-                // border: "2px solid #8689E1"
+                color: "#fff !important",
                 '& .MuiSvgIcon-root': {
                     color: `${colors.white.DEFAULT} !important`
                 }
             }
+        },
+        activePage: {
+            backgroundColor: "#4169E1 !important",
+            color: "#fff !important"
         }
 
     })

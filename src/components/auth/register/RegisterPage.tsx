@@ -1,11 +1,14 @@
 import React from 'react';
-import {Button, TextField, Typography, Box, Grid} from "@mui/material";
+import {Box, Button, TextField, Typography} from "@mui/material";
 import {IPropsRegister} from "../../../common/types/auth";
-
+import {useStyles} from "./styles";
+import App from "../../../App";
+import {AppButton} from "../../app-button/button";
 
 
 const RegisterPage: React.FC<IPropsRegister> = (props: IPropsRegister): JSX.Element => {
-    const {setEmail, setPassword, setRepeatPassword, setFirstname, setUsername, navigate} = props
+    const {navigate, register, errors} = props
+    const classes = useStyles()
     return (
         <Box>
             <Typography variant="h2"
@@ -18,52 +21,72 @@ const RegisterPage: React.FC<IPropsRegister> = (props: IPropsRegister): JSX.Elem
                         margin={2}
                         fontFamily="Poppins"
                         textAlign='left'
-            >You already have an account? <span className="incitingText" onClick={() => navigate('/login')}>Log in</span>
+            >You already have an account? <span className={classes.incitingText}
+                                                onClick={() => navigate('/login')}>Log in</span>
             </Typography>
-            {/*//TODO: Страница обновляется, нарушены принципы SPA ИСПРАВИТЬ*/}
-            <TextField fullWidth={true}
-                       margin='normal'
-                       label="First name"
-                       variant="outlined"
-                       placeholder='Please enter your first name'
-            onChange={(e) => setFirstname(e.target.value)}/>
-            <TextField fullWidth={true}
+            <TextField
+                error={!!errors.firstName}
+                helperText={errors.firstName ? `${errors.firstName.message}` : ''}
+                fullWidth={true}
+                margin='normal'
+                label="First name"
+                variant="outlined"
+                placeholder='Please enter your first name'
+                {...register('firstName')}
+            />
+            <TextField
+                error={!!errors.username}
+                helperText={errors.username ? `${errors.username.message}` : ''}
+                fullWidth={true}
                        margin='normal'
                        label="Username"
                        variant="outlined"
                        placeholder='Please enter your username'
-                       onChange={(e) => setUsername(e.target.value)}/>
-            <TextField fullWidth={true}
+                       {...register('username')}
+            />
+            <TextField
+                error={!!errors.email}
+                helperText={errors.email ? `${errors.email.message}` : ''}
+                fullWidth={true}
                        margin='normal'
                        label="Email"
                        variant="outlined"
                        placeholder='Please enter your email'
-                       onChange={(e) => setEmail(e.target.value)}/>
-            <TextField type="password"
+                       {...register('email')}
+            />
+            <TextField
+                error={!!errors.password}
+                helperText={errors.password ? `${errors.password.message}` : ''}
+                type="password"
                        fullWidth={true}
                        margin='normal'
                        label="Password"
                        variant="outlined"
                        placeholder='Please enter your password'
-                       onChange={(e) => setPassword(e.target.value)}/>
-            <TextField type="password"
+                       {...register('password')}
+            />
+            <TextField
+                error={!!errors.repeatPassword}
+                helperText={errors.repeatPassword ? `${errors.repeatPassword.message}` : ''}
+                type="password"
                        fullWidth={true}
                        margin='normal'
                        label="Password"
                        variant="outlined"
                        placeholder='Please repeat your password'
-                       onChange={(e) => setRepeatPassword(e.target.value)}/>
+                       {...register('repeatPassword')}
+            />
         <Box  sx={{
 
         }}>
-            <Button
+            <AppButton
                 sx={{
                     display: "flex",
                 fontFamily:"Poppins",
                 margin: "10px auto",
                 width:"60%",
             }} type='submit'
-                variant="contained">Create account</Button>
+                variant="contained">Create account</AppButton>
         </Box>
         </Box>
     );

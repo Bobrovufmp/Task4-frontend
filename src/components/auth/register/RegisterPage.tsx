@@ -5,7 +5,7 @@ import {IPropsRegister} from "../../../common/types/auth";
 
 
 const RegisterPage: React.FC<IPropsRegister> = (props: IPropsRegister): JSX.Element => {
-    const {setEmail, setPassword, setRepeatPassword, setFirstname, setUsername, navigate} = props
+    const {navigate, register} = props
     return (
         <Box>
             <Typography variant="h2"
@@ -26,33 +26,33 @@ const RegisterPage: React.FC<IPropsRegister> = (props: IPropsRegister): JSX.Elem
                        label="First name"
                        variant="outlined"
                        placeholder='Please enter your first name'
-            onChange={(e) => setFirstname(e.target.value)}/>
+            />
             <TextField fullWidth={true}
                        margin='normal'
                        label="Username"
                        variant="outlined"
                        placeholder='Please enter your username'
-                       onChange={(e) => setUsername(e.target.value)}/>
+            />
             <TextField fullWidth={true}
                        margin='normal'
                        label="Email"
                        variant="outlined"
                        placeholder='Please enter your email'
-                       onChange={(e) => setEmail(e.target.value)}/>
+            />
             <TextField type="password"
                        fullWidth={true}
                        margin='normal'
                        label="Password"
                        variant="outlined"
                        placeholder='Please enter your password'
-                       onChange={(e) => setPassword(e.target.value)}/>
+            />
             <TextField type="password"
                        fullWidth={true}
                        margin='normal'
                        label="Password"
                        variant="outlined"
                        placeholder='Please repeat your password'
-                       onChange={(e) => setRepeatPassword(e.target.value)}/>
+            />
         <Box  sx={{
 
         }}>

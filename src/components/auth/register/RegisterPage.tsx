@@ -1,8 +1,7 @@
 import React from 'react';
-import {Box, Button, TextField, Typography} from "@mui/material";
+import {Box, TextField, Typography} from "@mui/material";
 import {IPropsRegister} from "../../../common/types/auth";
 import {useStyles} from "./styles";
-import App from "../../../App";
 import {AppButton} from "../../app-button/button";
 
 

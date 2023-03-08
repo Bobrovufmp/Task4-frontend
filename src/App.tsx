@@ -17,11 +17,11 @@ function App() {
               <CssBaseline/>
                       <Routes>
                           <Route element={<LayoutComponent/>}>
-                              {/*Временно*/}
-                              {/*<Route element={<PrivateRoute />}>*/}
+                              <Route element={<PrivateRoute/>}>
                                   <Route path='/home' element={<HomePage/>}/>
                                   <Route path='/users' element={<UsersPage/>}/>
-                              {/*</Route>*/}
+                              </Route>
+                              <Route/>
                               <Route path='/login' element={<AuthRootComponent/>}/>
                               <Route path='/register' element={<AuthRootComponent/>}/>
                           </Route>

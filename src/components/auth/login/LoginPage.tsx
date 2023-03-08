@@ -3,17 +3,15 @@ import {Box, Button, TextField, Typography} from "@mui/material";
 import {IPropsLogin} from "../../../common/types/auth";
 import {useStyles} from "./styles";
 import {AppButton} from "../../app-button/button";
+import AppLoadingButton from "../../loadingButton/loadingButton";
 
 const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
-    const {navigate, register, errors} = props
+    const {navigate, register, errors, loading} = props
     const classes = useStyles()
 
     return (
         <>
-            <Typography>
-                {/*Временно*/}
-                <span className={classes.incitingText} onClick={() => navigate('/home')}>home</span>
-                </Typography>
+
             <Typography variant="h2"
                         fontFamily="Poppins"
                         textAlign='center'
@@ -46,7 +44,8 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
                        placeholder='Password'
                        {...register("password")}
             />
-            <AppButton
+            <AppLoadingButton
+                loading={loading}
                     variant="contained"
                     type="submit"
                     sx={{
@@ -56,7 +55,7 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
                         width: "60%",
             }}
             >Log in
-            </AppButton>
+            </AppLoadingButton>
         </>
     );
 };

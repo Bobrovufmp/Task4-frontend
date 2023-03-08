@@ -4,10 +4,11 @@ import {IPropsRegister} from "../../../common/types/auth";
 import {useStyles} from "./styles";
 import App from "../../../App";
 import {AppButton} from "../../app-button/button";
+import AppLoadingButton from "../../loadingButton/loadingButton";
 
 
 const RegisterPage: React.FC<IPropsRegister> = (props: IPropsRegister): JSX.Element => {
-    const {navigate, register, errors} = props
+    const {navigate, register, errors, loading} = props
     const classes = useStyles()
     return (
         <Box>
@@ -79,14 +80,16 @@ const RegisterPage: React.FC<IPropsRegister> = (props: IPropsRegister): JSX.Elem
         <Box  sx={{
 
         }}>
-            <AppButton
+            <AppLoadingButton
+                loading={loading}
                 sx={{
                     display: "flex",
                 fontFamily:"Poppins",
                 margin: "10px auto",
                 width:"60%",
             }} type='submit'
-                variant="contained">Create account</AppButton>
+                variant="contained">Create account
+            </AppLoadingButton>
         </Box>
         </Box>
     );

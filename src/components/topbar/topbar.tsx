@@ -17,7 +17,6 @@ const TopBarComponent: FC<ITopbarProps> = (props: ITopbarProps): JSX.Element => 
     const theme = useTheme()
     const colorMode: any = useContext(ColorModeContext)
     const classes = useStyles()
-
     console.log(user)
     return (
         <AppBar position={"static"} className={classes.root}>
@@ -25,7 +24,7 @@ const TopBarComponent: FC<ITopbarProps> = (props: ITopbarProps): JSX.Element => 
                 <FlexBetween>
                     <MenuOutlined className={classes.menuIcon} onClick={() => setIsOpen(!isOpen)}/>
                     <Typography variant={'h3'}>
-                        Welcome, {user.firstName}
+                        Welcome, {sessionStorage.getItem('name')}
                     </Typography>
                 </FlexBetween>
                 <Box className={classes.iconAndSearchBlock}>

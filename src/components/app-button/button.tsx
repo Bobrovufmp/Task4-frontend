@@ -1,6 +1,6 @@
 import {styled} from "@mui/styles";
-import {Button, Theme} from "@mui/material";
-import {themeSettings, tokens} from "../../theme/theme";
+import {Button} from "@mui/material";
+
 
 
 export const AppButton = styled(Button)( {

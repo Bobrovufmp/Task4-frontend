@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {Route, Routes} from "react-router-dom";
 import PrivateRoute from "./utils/route/privateRoute";
 import AuthRootComponent from "./components/auth/AuthRootComponent";

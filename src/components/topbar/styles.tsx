@@ -13,6 +13,13 @@ export const useStyles = makeStyles( (theme: Theme) => {
             borderBottom: `1px solid ${colors.borderColor}`,
             boxShadow: "none !important"
         },
+            toolbar: {
+                justifyContent: "space-between",
+                padding: "25px 45px"
+            },
+            menuIcon: {
+                marginRight: '20px'
+            },
         iconAndSearchBlock: {
             display: "flex"
 
@@ -41,13 +48,7 @@ export const useStyles = makeStyles( (theme: Theme) => {
         inputBlock: {
             padding: '14px 8px',
         },
-            toolbar: {
-            justifyContent: "space-between",
-                padding: "25px 45px"
-            },
-            menuIcon: {
-                marginRight: '20px'
-            }
+
 
         }
         )

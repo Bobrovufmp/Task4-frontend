@@ -1,5 +1,6 @@
 import {Interface} from "readline";
-import {FieldValues, UseFormRegister, UseFormSetError} from "react-hook-form";
+import {FieldErrors, FieldValues, UseFormRegister, UseFormSetError} from "react-hook-form";
+
 
 export interface IPropsLogin<
     TFieldValues extends FieldValues = FieldValues,
@@ -7,7 +8,9 @@ export interface IPropsLogin<
     > {
     navigate: (to: string) => void
     register: UseFormRegister<TFieldValues>
-    errors: any;
+    errors: FieldErrors<TFieldValues>;
+    loading: boolean
+
 }
 
 export interface IPropsRegister<
@@ -16,10 +19,13 @@ export interface IPropsRegister<
 > {
     navigate: (to: string) => void
     register: UseFormRegister<TFieldValues>
+    errors: FieldErrors<TFieldValues>;
+    loading: boolean
 }
 export interface IAuthState {
     user: IPublicUser,
-    isLogged: boolean
+    isLogged: boolean,
+    isLoading: boolean
 }
 
 interface IPublicUser {
@@ -51,4 +57,16 @@ interface IWatchlist {
     updatedAt: string,
 
     user: null | number
+}
+
+export interface ILoginData {
+    email: string,
+    password: string
+}
+
+export interface IRegisterData {
+    firstName: string,
+    username: string,
+    email: string,
+    password: string
 }

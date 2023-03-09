@@ -1,12 +1,15 @@
 import React from 'react';
 import {Box, Button, TextField, Typography} from "@mui/material";
-import "./style.css"
 import {IPropsLogin} from "../../../common/types/auth";
-
+import {useStyles} from "./styles";
+import {AppButton} from "../../app-button/button";
+import AppLoadingButton from "../../loadingButton/loadingButton";
 const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
-    const {navigate, register, errors} = props
+    const {navigate, register, errors, loading} = props
+    const classes = useStyles()
     return (
-        <Box>
+        <>
+
             <Typography variant="h2"
                         fontFamily="Poppins"
                         textAlign='center'
@@ -14,11 +17,10 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
                 Hello
             </Typography>
             <Typography variant="h6"
-                        margin={2}
                         fontFamily="Poppins"
-                        textAlign='left'
+                        textAlign='center'
             >
-                Sign in or <span className="incitingText" onClick={() => navigate('/register')}>create an account</span>
+                Sign in or <span className={classes.incitingText} onClick={() => navigate('/register')}>create an account</span>
             </Typography>
             <TextField
                 error={!!errors.email}
@@ -28,6 +30,7 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
                 label="Email"
                 variant="outlined"
                 placeholder='Email'
+                {...register("email")}
                 {...register("email", {
                     required: 'You should type something, for example: your email',
                     pattern:
@@ -42,23 +45,21 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
                        label="Password"
                        variant="outlined"
                        placeholder='Password'
-                       {...register("password", {
-                           required: 'You should type something here, for example: your password',
-                           minLength: 6
-
-                       })}
+                       {...register("password")}
             />
-            <Button sx={{
-                display: "flex",
-                fontFamily: "Poppins",
-                margin: "10px auto",
-                width: "60%",
-            }}
+            <AppLoadingButton
+                loading={loading}
                     variant="contained"
                     type="submit"
+                    sx={{
+                        fontFamily:"Poppins",
+                        marginTop: 2,
+                        marginBottom: 2,
+                        width: "60%",
+            }}
             >Log in
-            </Button>
-        </Box>
+            </AppLoadingButton>
+        </>
     );
 };
 

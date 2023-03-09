@@ -1,11 +1,15 @@
 import React from 'react';
-import {Button, TextField, Typography, Box, Grid} from "@mui/material";
+import {Box, Button, TextField, Typography} from "@mui/material";
 import {IPropsRegister} from "../../../common/types/auth";
-
+import {useStyles} from "./styles";
+import App from "../../../App";
+import {AppButton} from "../../app-button/button";
+import AppLoadingButton from "../../loadingButton/loadingButton";
 
 
 const RegisterPage: React.FC<IPropsRegister> = (props: IPropsRegister): JSX.Element => {
-    const {navigate, register} = props
+    const {navigate, register, errors, loading} = props
+    const classes = useStyles()
     return (
         <Box>
             <Typography variant="h2"
@@ -18,52 +22,75 @@ const RegisterPage: React.FC<IPropsRegister> = (props: IPropsRegister): JSX.Elem
                         margin={2}
                         fontFamily="Poppins"
                         textAlign='left'
-            >You already have an account? <span className="incitingText" onClick={() => navigate('/login')}>Log in</span>
+            >You already have an account? <span className={classes.incitingText}
+                                                onClick={() => navigate('/login')}>Log in</span>
             </Typography>
-            {/*//TODO: Страница обновляется, нарушены принципы SPA ИСПРАВИТЬ*/}
-            <TextField fullWidth={true}
-                       margin='normal'
-                       label="First name"
-                       variant="outlined"
-                       placeholder='Please enter your first name'
+            <TextField
+                error={!!errors.firstName}
+                helperText={errors.firstName ? `${errors.firstName.message}` : ''}
+                fullWidth={true}
+                margin='normal'
+                label="First name"
+                variant="outlined"
+                placeholder='Please enter your first name'
+                {...register('firstName')}
             />
-            <TextField fullWidth={true}
+            <TextField
+                error={!!errors.username}
+                helperText={errors.username ? `${errors.username.message}` : ''}
+                fullWidth={true}
                        margin='normal'
                        label="Username"
                        variant="outlined"
                        placeholder='Please enter your username'
+                       {...register('username')}
             />
-            <TextField fullWidth={true}
+            <TextField
+                error={!!errors.email}
+                helperText={errors.email ? `${errors.email.message}` : ''}
+                fullWidth={true}
                        margin='normal'
                        label="Email"
                        variant="outlined"
                        placeholder='Please enter your email'
+                       {...register('email')}
             />
-            <TextField type="password"
+            <TextField
+                error={!!errors.password}
+                helperText={errors.password ? `${errors.password.message}` : ''}
+                type="password"
                        fullWidth={true}
                        margin='normal'
                        label="Password"
                        variant="outlined"
                        placeholder='Please enter your password'
+                       {...register('password')}
             />
-            <TextField type="password"
+            <TextField
+                error={!!errors.repeatPassword}
+                helperText={errors.repeatPassword ? `${errors.repeatPassword.message}` : ''}
+                type="password"
                        fullWidth={true}
                        margin='normal'
                        label="Password"
                        variant="outlined"
                        placeholder='Please repeat your password'
+                       {...register('repeatPassword')}
+
             />
         <Box  sx={{
 
         }}>
-            <Button
+            <AppLoadingButton
+                loading={loading}
                 sx={{
                     display: "flex",
                 fontFamily:"Poppins",
                 margin: "10px auto",
                 width:"60%",
             }} type='submit'
-                variant="contained">Create account</Button>
+                variant="contained">Create account
+            </AppLoadingButton>
         </Box>
         </Box>
     );

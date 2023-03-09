@@ -4,11 +4,9 @@ import {IPropsLogin} from "../../../common/types/auth";
 import {useStyles} from "./styles";
 import {AppButton} from "../../app-button/button";
 import AppLoadingButton from "../../loadingButton/loadingButton";
-
 const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
     const {navigate, register, errors, loading} = props
     const classes = useStyles()
-
     return (
         <>
 
@@ -33,6 +31,11 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
                 variant="outlined"
                 placeholder='Email'
                 {...register("email")}
+                {...register("email", {
+                    required: 'You should type something, for example: your email',
+                    pattern:
+                    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                })}
             />
             <TextField fullWidth={true}
                        error={!!errors.password}

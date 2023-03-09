@@ -11,6 +11,7 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import {useStyles} from "./styles";
 import {loginUser, registerUser} from "../../store/thunks/auth/auth";
 
+
 const AuthRootComponent: React.FC = (): JSX.Element => {
     const location = useLocation()
     const dispatch = useAppDispatch()
@@ -31,6 +32,20 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
         if (location.pathname === '/login') {
             try {
                 await dispatch(loginUser(data))
+    } = useForm()
+
+    console.log('errors', errors)
+
+    const handleSubmitForm = async (data: any) => {
+        console.log(data)
+        if (location.pathname === '/login') {
+            try {
+                const userData = {
+                    email: data.email,
+                    password: data.password
+                }
+                const user = await instance.post('auth/login', userData)
+                await dispatch(login(user.data))
                 navigate('/home')
             } catch (e) {
                 return e

@@ -76,6 +76,7 @@ const RegisterPage: React.FC<IPropsRegister> = (props: IPropsRegister): JSX.Elem
                        variant="outlined"
                        placeholder='Please repeat your password'
                        {...register('repeatPassword')}
+
             />
         <Box  sx={{
 

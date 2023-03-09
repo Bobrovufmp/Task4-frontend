@@ -1,6 +1,7 @@
 import {Interface} from "readline";
 import {FieldErrors, FieldValues, UseFormRegister, UseFormSetError} from "react-hook-form";
 
+
 export interface IPropsLogin<
     TFieldValues extends FieldValues = FieldValues,
     TContext = any,
@@ -9,6 +10,7 @@ export interface IPropsLogin<
     register: UseFormRegister<TFieldValues>
     errors: FieldErrors<TFieldValues>;
     loading: boolean
+
 }
 
 export interface IPropsRegister<
